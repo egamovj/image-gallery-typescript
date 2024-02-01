@@ -5,9 +5,12 @@ import { SortableContext, arrayMove, rectSortingStrategy, sortableKeyboardCoordi
 import { useState } from 'react';
 import { ImageGallery } from './types/global.types';
 import { initialImageData } from './data';
+import ImageCard from './components/Cards/ImageCard';
 
 function App() {
   const [galleryData, setGalleryData] = useState(initialImageData);
+
+  const handleSelectImage = () => {}
 
   // dnd code
   const [activeItem, setActiveItem] = useState<ImageGallery | null>(null)
@@ -55,10 +58,13 @@ function App() {
             <div className='grid grid-cols-2 md:grid-cols-5 gap-8 p-8'>
               <SortableContext items={galleryData} strategy={rectSortingStrategy}>
                 {
-                  galleryData.map((ImageItem) => (
-                    <div>
-                      <img src={ImageItem.slug} alt="" />
-                    </div>
+                  galleryData.map((imageItem) => (
+                    <ImageCard key={imageItem.id} 
+                    id={imageItem.id} 
+                    isSelected={imageItem.isSelected} 
+                    slug={imageItem.slug}
+                    onClick={handleSelectImage}
+                    />
                   ))
                 }
               </SortableContext>
