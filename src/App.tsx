@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DndContext, DragEndEvent, DragStartEvent, KeyboardSensor, PointerSensor, TouchSensor, closestCenter, useSensor, useSensors } from '@dnd-kit/core'
 import './App.css'
-import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
+import { SortableContext, arrayMove, rectSortingStrategy, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import { useState } from 'react';
 import { ImageGallery } from './types/global.types';
 import { initialImageData } from './data';
@@ -52,8 +52,16 @@ function App() {
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
           >
-            <div>
-              Image Gallery
+            <div className='grid grid-cols-2 md:grid-cols-5 gap-8 p-8'>
+              <SortableContext items={galleryData} strategy={rectSortingStrategy}>
+                {
+                  galleryData.map((ImageItem) => (
+                    <div>
+                      <img src={ImageItem.slug} alt="" />
+                    </div>
+                  ))
+                }
+              </SortableContext>
             </div>
           </DndContext>
         </div>
