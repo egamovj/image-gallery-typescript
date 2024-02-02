@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ImageGallery } from './types/global.types';
 import { initialImageData } from './data';
 import ImageCard from './components/Cards/ImageCard';
+import AddImageCard from './components/Cards/AddImageCard';
 
 function App() {
   const [galleryData, setGalleryData] = useState(initialImageData);
@@ -78,6 +79,7 @@ function App() {
                   ))
                 }
               </SortableContext>
+              <AddImageCard setGalleryData={setGalleryData} />
             </div>
           </DndContext>
         </div>
