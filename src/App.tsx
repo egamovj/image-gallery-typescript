@@ -25,7 +25,10 @@ function App() {
     setGalleryData(newGalleryData)
   };
 
-  const handleDelete = () => {}
+  const handleDelete = (selectedItems: ImageGallery[]) => {
+    const newGalleryData = galleryData.filter((imageItem) => !selectedItems.includes(imageItem));
+    setGalleryData(newGalleryData)
+  };
 
   // dnd code
   const [activeItem, setActiveItem] = useState<ImageGallery | null>(null)

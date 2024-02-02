@@ -10,7 +10,7 @@ interface HeaderProps {
 const Header = ({onDelete, galleryData}: HeaderProps) => {
     const selectedItems = galleryData.filter((item) => item.isSelected);
   return (
-    <div>
+    <div className="flex items-center justify-between gap-4 p-5">
         {
             selectedItems.length > 0 ? <>
                 <h2 className="text-lg md:text-2xl font-semibold text-gray-800 flex items-center gap-2">
