@@ -8,6 +8,7 @@ import { initialImageData } from './data';
 import ImageCard from './components/Cards/ImageCard';
 import AddImageCard from './components/Cards/AddImageCard';
 import ImageOverlayCard from './components/Cards/ImageOverlayCard';
+import Header from './components/Header/Header';
 
 function App() {
   const [galleryData, setGalleryData] = useState(initialImageData);
@@ -22,7 +23,9 @@ function App() {
       return imageItem;
     });
     setGalleryData(newGalleryData)
-  }
+  };
+
+  const handleDelete = () => {}
 
   // dnd code
   const [activeItem, setActiveItem] = useState<ImageGallery | null>(null)
@@ -60,7 +63,8 @@ function App() {
     <div className='min-h-screen'>
       <div className='container flex flex-col items-center'>
         <div className='bg-white my-8 rounded-lg shadow max-w-5xl grid divide-y'>
-          <header className='text-2xl'>Showcase</header>
+          <Header onDelete={handleDelete} galleryData={galleryData} />
+
           <DndContext 
           sensors={sensors} 
           collisionDetection={closestCenter}
