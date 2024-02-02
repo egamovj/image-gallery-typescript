@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useSortable } from "@dnd-kit/sortable";
 import { ImageGallery } from "../../types/global.types"
 import { twMerge } from "tailwind-merge";
@@ -25,6 +26,7 @@ const ImageCard = ({id, slug, isSelected, onClick, className=""}: ImageCard) => 
     style={style}
     className={twMerge("relative rounded-lg overflow-hidden border border-gray-300 group z-0 aspect-square object-cover", className)}>
 
+        <button {...listeners} {...attributes} className={twMerge("absolute inset-0 bg-black transition-opacity duration-500 z-50 opacity-0 group-hover:opacity-40")} />
         <div className={twMerge("flex items-center justify-center h-full", isSelected && "opacity-60")}>
             <img src={slug} alt="" className="block h-full w-full object-cover" />
         </div>
