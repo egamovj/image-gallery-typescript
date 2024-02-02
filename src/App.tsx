@@ -10,7 +10,17 @@ import ImageCard from './components/Cards/ImageCard';
 function App() {
   const [galleryData, setGalleryData] = useState(initialImageData);
 
-  const handleSelectImage = () => {}
+  const handleSelectImage = (id: string | number) => {
+    const newGalleryData = galleryData.map((imageItem) => {
+      if(imageItem.id === id) {
+        return {
+          ...imageItem, isSelected: !imageItem.isSelected
+        }
+      }
+      return imageItem;
+    });
+    setGalleryData(newGalleryData)
+  }
 
   // dnd code
   const [activeItem, setActiveItem] = useState<ImageGallery | null>(null)

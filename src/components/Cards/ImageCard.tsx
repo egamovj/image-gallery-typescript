@@ -28,9 +28,11 @@ const ImageCard = ({id, slug, isSelected, onClick, className=""}: ImageCard) => 
     style={style}
     className={twMerge("relative rounded-lg overflow-hidden border border-gray-300 group z-0 aspect-square object-cover", className)}>
 
-        <button {...listeners} {...attributes} className={twMerge("absolute inset-0 bg-black transition-opacity duration-500 z-50 opacity-0 group-hover:opacity-40")} />
+        <button {...listeners} {...attributes} className={twMerge("absolute inset-0 bg-black transition-opacity duration-500 z-50 opacity-0 group-hover:opacity-40", isSelected && "!opacity-0")} />
 
-        <button className={twMerge("absolute top-2 z-50 left-2 group-hover:opacity-100 transition-opacity duration-500", isSelected && "!opacity-100", !isSelected && "opacity-0")} >
+        <button 
+        onClick={onClick && (() => onClick(id,))}
+        className={twMerge("absolute top-2 z-50 left-2 group-hover:opacity-100 transition-opacity duration-500", isSelected && "!opacity-100", !isSelected && "opacity-0")} >
           {
             isSelected ? (<CheckboxIcon className="text-blue-600" />) : (<EmptyCheckboxIcon className="" />)
           }
