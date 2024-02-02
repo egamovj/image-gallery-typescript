@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DndContext, DragEndEvent, DragStartEvent, KeyboardSensor, PointerSensor, TouchSensor, closestCenter, useSensor, useSensors } from '@dnd-kit/core'
+import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, KeyboardSensor, PointerSensor, TouchSensor, closestCenter, useSensor, useSensors } from '@dnd-kit/core'
 import './App.css'
 import { SortableContext, arrayMove, rectSortingStrategy, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import { useState } from 'react';
@@ -7,6 +7,7 @@ import { ImageGallery } from './types/global.types';
 import { initialImageData } from './data';
 import ImageCard from './components/Cards/ImageCard';
 import AddImageCard from './components/Cards/AddImageCard';
+import ImageOverlayCard from './components/Cards/ImageOverlayCard';
 
 function App() {
   const [galleryData, setGalleryData] = useState(initialImageData);
@@ -80,6 +81,13 @@ function App() {
                 }
               </SortableContext>
               <AddImageCard setGalleryData={setGalleryData} />
+                
+              <DragOverlay adjustScale={true} wrapperElement='div'>
+                {
+                  activeItem ? (<ImageOverlayCard className='ansolute z-50 h-full w-full' slug={activeItem.slug}/>) : null
+                }
+              </DragOverlay>
+
             </div>
           </DndContext>
         </div>
